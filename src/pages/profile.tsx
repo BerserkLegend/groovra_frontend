@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
 import { usePlayer } from '../context/player-context'
+import type { Track } from '../context/player-context'
 import { useSubscription } from '../context/subscription-context'
 import { logoutUser, changePasswordApi } from '../api/auth'
 import { getAccessToken, apiFetch, GATEWAY_URL, getCurrentUserId, getOrCreateDeviceId, clearAuth, redirectToLogin } from '../api/api-client'
@@ -34,7 +35,7 @@ import {
 } from '../api/profile'
 import { getSessions, revokeSession, revokeAllSessions } from '../api/sessions'
 import { getBlockedUserIds, unblockUser } from '../api/chat-client'
-import { renameTrack } from '../api/tracks'
+import { renameTrack, getDeletedTracks, restoreTrack, permanentlyDeleteTrack } from '../api/tracks'
 import {
   fetchMyAlbums,
   fetchDeletedAlbums,
@@ -638,6 +639,55 @@ export const Profile = ({ user: initialUser = User }: ProfileProps) => {
   const closeRenameModal = () => {
     setTrackToRename(null)
     setRenameError(null)
+  }
+
+  const [deletedTracks, setDeletedTracks] = useState<Track[]>([])
+  const [isViewingTrackTrash, setIsViewingTrackTrash] = useState(false)
+  const [isLoadingDeletedTracks, setIsLoadingDeletedTracks] = useState(false)
+  const [deletedTracksError, setDeletedTracksError] = useState<string | null>(null)
+  const [trackToPermanentlyDelete, setTrackToPermanentlyDelete] = useState<Track | null>(null)
+
+  const fetchDeletedTracksList = async () => {
+    setIsLoadingDeletedTracks(true)
+    setDeletedTracksError(null)
+    try {
+      const items = await getDeletedTracks()
+      setDeletedTracks(items)
+    } catch (err) {
+      setDeletedTracks([])
+      setDeletedTracksError(err instanceof Error ? err.message : (i18n.language === 'en' ? 'Failed to load deleted tracks.' : 'Не вдалося завантажити видалені треки.'))
+    } finally {
+      setIsLoadingDeletedTracks(false)
+    }
+  }
+
+  const handleToggleTrackTrash = () => {
+    const next = !isViewingTrackTrash
+    setIsViewingTrackTrash(next)
+    // Кошик перезавантажуємо завжди: його вміст змінюється після кожного видалення
+    // чи відновлення, тому кешований непорожній список одразу став би застарілим.
+    if (next) fetchDeletedTracksList()
+  }
+
+  const handleRestoreTrack = async (trackId: string) => {
+    try {
+      await restoreTrack(trackId)
+      setDeletedTracks((prev) => prev.filter((t) => t.trackId !== trackId))
+      fetchUserTracks()
+    } catch (err) {
+      setDeletedTracksError(err instanceof Error ? err.message : (i18n.language === 'en' ? 'Failed to restore track.' : 'Не вдалося відновити трек.'))
+    }
+  }
+
+  const handlePermanentlyDeleteTrack = async (track: Track) => {
+    try {
+      await permanentlyDeleteTrack(track.trackId)
+      setDeletedTracks((prev) => prev.filter((t) => t.trackId !== track.trackId))
+    } catch (err) {
+      setDeletedTracksError(err instanceof Error ? err.message : (i18n.language === 'en' ? 'Failed to permanently delete track.' : 'Не вдалося остаточно видалити трек.'))
+    } finally {
+      setTrackToPermanentlyDelete(null)
+    }
   }
 
   const [artistStats, setArtistStats] = useState<ArtistStats | null>(null)
@@ -2758,16 +2808,91 @@ export const Profile = ({ user: initialUser = User }: ProfileProps) => {
                 <div>
                   <div className='ArtistHeaderWithAction'>
                     <h2 className='ArtistUploadTitle'>{i18n.language === 'en' ? 'My Tracks' : 'Ваші треки'}</h2>
-                    <button
-                      type='button'
-                      className='ArtistDropZonePillBtn'
-                      onClick={() => setArtistDashSection('upload')}
-                    >
-                      + {i18n.language === 'en' ? 'Upload New' : 'Додати новий'}
-                    </button>
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                      <button type='button' className='ArtistDropZonePillBtn' onClick={handleToggleTrackTrash}>
+                        {isViewingTrackTrash
+                          ? (i18n.language === 'en' ? 'Back to Tracks' : 'Назад до треків')
+                          : `🗑 ${i18n.language === 'en' ? 'Trash' : 'Кошик'}`}
+                      </button>
+                      {!isViewingTrackTrash && (
+                        <button
+                          type='button'
+                          className='ArtistDropZonePillBtn'
+                          onClick={() => setArtistDashSection('upload')}
+                        >
+                          + {i18n.language === 'en' ? 'Upload New' : 'Додати новий'}
+                        </button>
+                      )}
+                    </div>
                   </div>
 
-                  {isLoadingArtistTracks ? (
+                  {isViewingTrackTrash && deletedTracksError && (
+                    <div className='ArtistNotification Error'>
+                      <span>⚠️ {deletedTracksError}</span>
+                      <button type='button' className='ArtistNotifBtn' onClick={() => setDeletedTracksError(null)}>×</button>
+                    </div>
+                  )}
+
+                  {isViewingTrackTrash ? (
+                    isLoadingDeletedTracks ? (
+                      <div style={{ padding: '32px 0', color: '#A1A1AA', textAlign: 'center' }}>
+                        {t('common.loading', 'Завантаження...')}
+                      </div>
+                    ) : deletedTracks.length === 0 ? (
+                      <div className='ArtistEmptyTracks'>
+                        <p>{i18n.language === 'en' ? 'Trash is empty.' : 'Кошик порожній.'}</p>
+                      </div>
+                    ) : (
+                      <div className='ArtistDashTableWrapper' style={{ marginTop: '20px' }}>
+                        <table className='ArtistDashTable'>
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>{i18n.language === 'en' ? 'Track' : 'Назва треку'}</th>
+                              <th>{i18n.language === 'en' ? 'Genre' : 'Жанр'}</th>
+                              <th>{i18n.language === 'en' ? 'Actions' : 'Дії'}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {deletedTracks.map((track, idx) => (
+                              <tr key={track.trackId}>
+                                <td>{idx + 1}</td>
+                                <td className='ArtistDashTrackTitle'>
+                                  <div className='ArtistTrackRowCell'>
+                                    <div className='ArtistTrackCoverWrap'>
+                                      <TrackCover
+                                        src={track.coverImageUrl}
+                                        className={`ArtistDashTrackCover ${!track.coverImageUrl ? 'placeholder-cover' : ''}`}
+                                        alt={track.title}
+                                      />
+                                    </div>
+                                    <span className='ArtistTrackName'>{track.title}</span>
+                                  </div>
+                                </td>
+                                <td>{track.genre || '—'}</td>
+                                <td style={{ display: 'flex', gap: '8px' }}>
+                                  <button
+                                    type='button'
+                                    className='ArtistRenameTrackBtn'
+                                    onClick={() => handleRestoreTrack(track.trackId)}
+                                  >
+                                    {i18n.language === 'en' ? 'Restore' : 'Відновити'}
+                                  </button>
+                                  <button
+                                    type='button'
+                                    className='ArtistDeleteTrackBtn'
+                                    onClick={() => setTrackToPermanentlyDelete(track)}
+                                  >
+                                    {i18n.language === 'en' ? 'Delete forever' : 'Видалити назавжди'}
+                                  </button>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    )
+                  ) : isLoadingArtistTracks ? (
                     <div style={{ padding: '32px 0', color: '#A1A1AA', textAlign: 'center' }}>
                       {t('common.loading', 'Завантаження...')}
                     </div>
@@ -3637,6 +3762,15 @@ export const Profile = ({ user: initialUser = User }: ProfileProps) => {
         confirmLabel={i18n.language === 'en' ? 'Delete forever' : 'Видалити назавжди'}
         onClose={() => setAlbumToPermanentlyDelete(null)}
         onConfirm={async () => { if (albumToPermanentlyDelete) await handlePermanentlyDeleteAlbum(albumToPermanentlyDelete) }}
+      />
+
+      <ConfirmModal
+        isOpen={trackToPermanentlyDelete !== null}
+        title={i18n.language === 'en' ? 'Delete track forever?' : 'Видалити трек назавжди?'}
+        message={i18n.language === 'en' ? `"${trackToPermanentlyDelete?.title ?? ''}" and its audio file will be permanently deleted. This cannot be undone.` : `Трек «${trackToPermanentlyDelete?.title ?? ''}» та його аудіофайл будуть остаточно видалені. Цю дію не можна скасувати.`}
+        confirmLabel={i18n.language === 'en' ? 'Delete forever' : 'Видалити назавжди'}
+        onClose={() => setTrackToPermanentlyDelete(null)}
+        onConfirm={async () => { if (trackToPermanentlyDelete) await handlePermanentlyDeleteTrack(trackToPermanentlyDelete) }}
       />
 
       {trackToRename && (
