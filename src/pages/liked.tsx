@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { usePlayer, type Track } from '../context/player-context'
 import { apiFetch, GATEWAY_URL, trackStreamUrl } from '../api/api-client'
@@ -27,11 +27,17 @@ const withStreamUrls = (items: Track[]): Track[] =>
 
 export const LikedPage: React.FC = () => {
   const { t } = useTranslation()
-  const { currentTrack, selectTrack, likedTrackIds } = usePlayer()
+  const { currentTrack, selectTrack, likedTrackIds, likedSyncVersion } = usePlayer()
   const [currentPage, setCurrentPage] = useState(1)
   const [likedTracks, setLikedTracks] = useState<Track[]>([])
   const [totalCount, setTotalCount] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
+  const [hasLoadedOnce, setHasLoadedOnce] = useState(false)
+
+  // Усі треки, які сторінка колись бачила. Потрібні, щоб повторний лайк показав рядок
+  // миттєво: сам список уже не містить цього треку (його прибрав дизлайк), а чекати
+  // мережу тільки заради вже відомих назви й обкладинки немає сенсу.
+  const knownTracksRef = useRef<Map<string, Track>>(new Map())
 
   const loadPage = useCallback(async (page: number) => {
     setIsLoading(true)
@@ -45,26 +51,47 @@ export const LikedPage: React.FC = () => {
           pageNumber: Number(data.pageNumber ?? page),
           pageSize: Number(data.pageSize ?? PAGE_SIZE),
         }
-        setLikedTracks(withStreamUrls(paged.items))
+        const items = withStreamUrls(paged.items)
+        items.forEach((t) => knownTracksRef.current.set(t.trackId, t))
+        setLikedTracks(items)
         setTotalCount(paged.totalCount)
       }
     } finally {
       setIsLoading(false)
+      setHasLoadedOnce(true)
     }
   }, [])
 
+  // Один ефект на обидва тригери: зміна сторінки і ПІДТВЕРДЖЕНА сервером зміна вподобаного.
+  // Раніше тут було два окремі ефекти, і другий слухав likedTrackIds — той оновлюється
+  // оптимістично, ще до відповіді сервера, тому GET /music/favorites обганяв POST/DELETE
+  // і повертав список без щойно лайкнутого треку. Через це повторний лайк не з'являвся
+  // до ручного перезавантаження сторінки. Плюс на монтуванні обидва ефекти стріляли разом,
+  // даючи два однакові запити.
   useEffect(() => {
     loadPage(currentPage)
-  }, [currentPage, loadPage])
+  }, [currentPage, loadPage, likedSyncVersion])
 
-  useEffect(() => {
-    loadPage(currentPage)
-  }, [likedTrackIds])
+  // Фільтр лишається по likedTrackIds (оптимістичний) — щоб дизлайк ховав рядок миттєво,
+  // не чекаючи мережі. А трек, повторно лайкнутий після дизлайку, дістаємо з кешу вже
+  // баченого: у завантаженому списку його ще немає (його прибрав попередній ресинк),
+  // і без цього рядок з'являвся б лише після відповіді сервера.
+  const visibleLikedTracks = useMemo(() => {
+    const shown = likedTracks.filter(t => likedTrackIds.includes(t.trackId))
+    const shownIds = new Set(shown.map(t => t.trackId))
 
-  const visibleLikedTracks = likedTracks.filter(t => likedTrackIds.includes(t.trackId))
+    const restored = likedTrackIds
+      .filter(id => !shownIds.has(id))
+      .map(id => knownTracksRef.current.get(id))
+      .filter((t): t is Track => t !== undefined)
+
+    return [...shown, ...restored]
+  }, [likedTracks, likedTrackIds])
   const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE))
 
-  if (isLoading) {
+  // Лоадер лише на першому завантаженні. Раніше він показувався і на фоновому ресинку
+  // після кожного лайку — весь список зникав і блимав, що й сприймалось як "трек пропав".
+  if (isLoading && !hasLoadedOnce) {
     return <Loader />
   }
 

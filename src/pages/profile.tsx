@@ -306,7 +306,7 @@ export const Profile = ({ user: initialUser = User }: ProfileProps) => {
   const { t, i18n } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
-  const { setActiveTab, selectTrack, currentTrack, likedTrackIds } = usePlayer()
+  const { setActiveTab, selectTrack, currentTrack, likedTrackIds, likedSyncVersion } = usePlayer()
   const { subscription, paymentHistory, openStripeModal, fetchPaymentHistory, cancelSubscription } = useSubscription()
   const [isCancellingSub, setIsCancellingSub] = useState(false)
   const [showCancelSubModal, setShowCancelSubModal] = useState(false)
@@ -1210,7 +1210,10 @@ export const Profile = ({ user: initialUser = User }: ProfileProps) => {
     }
     refreshFavorites()
     return () => { mounted = false }
-  }, [likedTrackIds])
+    // likedSyncVersion, а не likedTrackIds: останній міняється оптимістично, ще до відповіді
+    // сервера, тому запит списку обганяв мутацію й повертав застарілі дані (той самий баг,
+    // що і на сторінці "Вподобане").
+  }, [likedSyncVersion])
 
   useEffect(() => {
     let mounted = true

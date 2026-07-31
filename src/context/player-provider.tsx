@@ -79,6 +79,9 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   })
 
+  // Лічильник підтверджених сервером змін вподобаного (див. коментар у PlayerContextType).
+  const [likedSyncVersion, setLikedSyncVersion] = useState(0)
+
   const [blobUrl, setBlobUrl] = useState<string | null>(null)
   const blobUrlRef = useRef<string | null>(null)
 
@@ -224,12 +227,18 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         })
 
       if (!response.ok) throw new Error(`Favorite sync failed: ${response.status}`)
+
+      // Сигналимо СЮДИ, а не поруч із оптимістичним setLikedTrackIds вище: лише тепер
+      // сервер справді знає про зміну, тому перезавантажений список поверне актуальні дані.
+      setLikedSyncVersion(v => v + 1)
       return true
     } catch (err) {
       if (import.meta.env.DEV) console.error('Помилка синхронізації лайку:', err)
       setLikedTrackIds(prev =>
         currentlyLiked ? [...prev, trackId] : prev.filter(id => id !== trackId)
       )
+      // Після відкату теж треба ресинк — інакше список лишиться розсинхронізованим із БД.
+      setLikedSyncVersion(v => v + 1)
       return false
     }
   }, [currentTrack, likedTrackIds, isGuest, openAuthModal])
@@ -789,6 +798,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     isLoadingTracks,
     searchQuery,
     likedTrackIds,
+    likedSyncVersion,
     isLiked,
     audioUrl: blobUrl,
     audioRef,

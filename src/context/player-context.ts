@@ -30,6 +30,11 @@ export interface PlayerContextType {
   isLoadingTracks: boolean
   searchQuery: string
   likedTrackIds: string[]
+  /** Збільшується ПІСЛЯ підтвердження лайку/дизлайку сервером. Сторінки зі списком
+   *  вподобаного мають перезавантажуватись саме по ньому, а не по likedTrackIds:
+   *  останній змінюється оптимістично, до відповіді сервера, тому запит списку
+   *  обганяв би сам мутуючий запит і повертав ще старі дані. */
+  likedSyncVersion: number
   isLiked: boolean
   audioUrl: string | null
   audioRef: React.RefObject<HTMLAudioElement | null>
