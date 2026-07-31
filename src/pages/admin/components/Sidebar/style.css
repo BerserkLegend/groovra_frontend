@@ -1,0 +1,165 @@
+.AdminSidebar {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 256px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: #0d0d12;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 20;
+  overflow-y: auto;
+}
+
+.SidebarTop {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.SidebarLogoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 8px;
+}
+
+.SidebarLogoText {
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.15;
+  letter-spacing: -0.05em;
+  background: linear-gradient(180.54deg, #a98fdb 13.29%, #72deef 99.53%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.SidebarLogoSub {
+  font-family: "Manrope", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #a98fdb;
+}
+
+.SidebarNav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.SidebarNavLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #bbc9cc;
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.SidebarNavLink:hover {
+  background: rgba(169, 143, 219, 0.1);
+  color: #d7f8ff;
+}
+
+.SidebarNavLink:focus-visible {
+  outline: 2px solid #72deef;
+  outline-offset: 2px;
+}
+
+.SidebarNavLinkActive,
+.SidebarNavLinkActive:hover {
+  background: rgba(169, 143, 219, 0.2);
+  color: #d7f8ff;
+  font-weight: 600;
+}
+
+.SidebarNavIcon {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.SidebarBottom {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 16px;
+  border-top: 1px solid #72deef;
+}
+
+.SidebarStatusBox {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 16px;
+  margin-bottom: 8px;
+  background-color: #0d0d12;
+  border: 1px solid #a98fdb;
+  border-radius: 8px;
+}
+
+.SidebarStatusTitle {
+  font-family: "Manrope", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #9defff;
+}
+
+.SidebarStatusRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.SidebarStatusDot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background-color: #4ade80;
+  box-shadow: 0 0 6px rgba(74, 222, 128, 0.8);
+}
+
+.SidebarStatusText {
+  font-family: "Manrope", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #e5e2e1;
+}
+
+@media (max-width: 1024px) {
+  .AdminSidebar {
+    width: 72px;
+  }
+  .SidebarLogoText,
+  .SidebarLogoSub,
+  .SidebarNav,
+  .SidebarStatusBox  {
+    display: none;
+  }
+  .SidebarNavLink {
+    justify-content: center;
+    padding: 12px;
+  }
+}

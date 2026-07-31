@@ -1,0 +1,102 @@
+.DashboardHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.DashboardTitleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 576px;
+}
+
+.DashboardTitle {
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #e5e2e1;
+  margin: 0;
+}
+
+.DashboardSubtitle {
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #bbc9cc;
+  margin: 0;
+}
+
+.DashboardActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.DashboardBtn {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 24px;
+  height: 42px;
+  background: transparent;
+  border: 1px solid #a98fdb;
+  border-radius: 8px;
+  color: #f5f5f5;
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.DashboardBtn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.DashboardBtn:hover:not(:disabled) {
+  background: rgba(169, 143, 219, 0.15);
+  transform: translateY(-1px);
+}
+
+.DashboardBtn:focus-visible {
+  outline: 2px solid #72deef;
+  outline-offset: 2px;
+}
+
+.DashboardBtnActive {
+  background: rgba(114, 222, 239, 0.12);
+  border-color: #72deef;
+  color: #d7f8ff;
+}
+
+.DashboardBtnIcon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.DashboardBtnIconSpin {
+  animation: DashboardSpin 1.4s linear infinite;
+}
+
+@keyframes DashboardSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .DashboardTitle {
+    font-size: 32px;
+  }
+}

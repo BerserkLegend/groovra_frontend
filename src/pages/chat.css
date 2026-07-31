@@ -1,0 +1,2216 @@
+.ChatPage {
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 80px;
+  margin-bottom: 96px;
+  height: calc(100vh - 176px);
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: 300px 1fr 300px;
+  gap: 16px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(102, 102, 102, 0.2) 100%), #16161F;
+}
+
+.ChatPage * {
+  box-sizing: border-box;
+}
+
+.ChatList,
+.ChatThread,
+.ChatInfoPanel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  background: #1A1A24;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+}
+
+.ChatListTop {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ChatSearchBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 8px 12px;
+  color: #9C9CA8;
+}
+
+.ChatSearchBox input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #E3E2E2;
+  font-size: 14px;
+}
+
+.ChatFilterRow {
+  display: flex;
+  gap: 8px;
+}
+
+.ChatFilterRow button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #9C9CA8;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.ChatFilterRow button.active {
+  background: rgba(114, 222, 239, 0.12);
+  border-color: var(--color-accent-blue);
+  color: var(--color-accent-blue);
+}
+
+.ChatNewChatBtn {
+  margin-left: auto;
+  width: 30px;
+  height: 30px;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50% !important;
+}
+
+.ChatListSectionLabel {
+  padding: 12px 16px 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #7A7A87;
+}
+
+.ChatListScroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 8px 12px;
+}
+
+.ChatListEmpty {
+  padding: 24px 12px;
+  text-align: center;
+  color: #7A7A87;
+  font-size: 13px;
+}
+
+.ChatListRowWrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 2px;
+}
+
+.ChatListRowActions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+}
+
+.ChatSwipeBtn {
+  width: 68px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+}
+
+.ChatSwipeBtn.pin {
+  background: var(--color-accent-purple);
+}
+
+.ChatSwipeBtn.delete {
+  background: #E5484D;
+}
+
+.ChatListItem {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 8px;
+  border-radius: 12px;
+  background: #1A1A24;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  touch-action: pan-y;
+  transition: transform 0.2s ease, background 0.15s ease;
+}
+
+.ChatListItem.dragging {
+  transition: none;
+}
+
+.ChatListItem:hover {
+  background: #202030;
+}
+
+.ChatListItem.active {
+  background: linear-gradient(rgba(114, 222, 239, 0.08), rgba(114, 222, 239, 0.08)), #1A1A24;
+}
+
+.ChatListItemBody {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ChatListItemTop,
+.ChatListItemBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.ChatListItemName {
+  font-weight: 600;
+  font-size: 14px;
+  color: #FFFFFF;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ChatListItemTime {
+  font-size: 11px;
+  color: #7A7A87;
+  flex-shrink: 0;
+}
+
+.ChatListItemSubtitle {
+  font-size: 13px;
+  color: #9C9CA8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ChatUnreadBadge {
+  flex-shrink: 0;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: var(--color-accent-blue);
+  color: #0D0D12;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ChatAvatar {
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.ChatAvatar.sm {
+  width: 44px;
+  height: 44px;
+  font-size: 13px;
+}
+
+.ChatAvatar.md {
+  width: 44px;
+  height: 44px;
+  font-size: 14px;
+}
+
+.ChatAvatar.lg {
+  width: 72px;
+  height: 72px;
+  font-size: 22px;
+}
+
+.ChatThreadHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ChatBackBtn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--color-accent-blue);
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.ChatThreadHeaderInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ChatThreadName {
+  font-weight: 600;
+  font-size: 15px;
+  color: #FFFFFF;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ChatThreadStatus {
+  font-size: 12px;
+  color: var(--color-accent-blue);
+}
+
+.ChatThreadActions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.ChatThreadActions button {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #C9C9D3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ChatThreadActions button.active,
+.ChatThreadActions button:hover {
+  color: var(--color-accent-blue);
+  border-color: var(--color-accent-blue);
+}
+
+.ChatTicketPill {
+  margin: 12px 16px 0;
+  width: fit-content;
+  background: rgba(169, 143, 219, 0.12);
+  border: 1px solid rgba(169, 143, 219, 0.4);
+  color: var(--color-accent-purple);
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.ChatMessages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ChatDateDivider {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.ChatDateDivider span {
+  background: rgba(255, 255, 255, 0.06);
+  color: #9C9CA8;
+  font-size: 11px;
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+
+.ChatBubbleRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ChatBubbleRow.them {
+  justify-content: flex-start;
+}
+
+.ChatBubbleRow.me {
+  justify-content: flex-end;
+}
+
+.ChatBubble {
+  max-width: 70%;
+  background: #22222E;
+  border-radius: 16px 16px 16px 4px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ChatBubble p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #E3E2E2;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.ChatBubbleTime {
+  font-size: 10px;
+  color: #7A7A87;
+  align-self: flex-end;
+}
+
+.ChatBubbleRow.me .ChatBubble {
+  background: rgba(114, 222, 239, 0.14);
+  border: 1px solid rgba(114, 222, 239, 0.35);
+  border-radius: 16px 16px 4px 16px;
+}
+
+.ChatBubbleContentCol {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  max-width: 70%;
+}
+
+.ChatBubbleContentCol .ChatBubble,
+.ChatBubbleContentCol .ChatBubble-editing,
+.ChatBubbleContentCol .ChatBubble-track,
+.ChatBubbleContentCol .ChatBubble-media,
+.ChatBubbleContentCol .ChatBubble-voice,
+.ChatBubbleContentCol .ChatBubble-file {
+  max-width: 100%;
+}
+
+.ChatBubbleRow.me .ChatBubbleContentCol {
+  align-items: flex-end;
+}
+
+.ChatBubbleRow.them .ChatBubbleContentCol {
+  align-items: flex-start;
+}
+
+.ChatBubbleMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 100%;
+}
+
+.ChatForwardedLabel {
+  font-size: 11px;
+  font-style: italic;
+  color: #7A7A87;
+}
+
+.ChatReplyQuote {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  max-width: 100%;
+  padding: 4px 8px;
+  border-left: 2px solid #72DEEF;
+  background: rgba(114, 222, 239, 0.06);
+  border-radius: 4px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ChatReplyQuote:hover {
+  background: rgba(114, 222, 239, 0.12);
+}
+
+.ChatReplyQuoteName {
+  font-size: 11px;
+  font-weight: 600;
+  color: #72DEEF;
+}
+
+.ChatReplyQuoteText {
+  font-size: 12px;
+  color: #B3B3BD;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 220px;
+}
+
+.ChatBubbleMenuWrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.ChatBubbleMenuTrigger {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #7A7A87;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s, background 0.15s;
+}
+
+.ChatBubbleRow:hover .ChatBubbleMenuTrigger {
+  opacity: 1;
+}
+
+.ChatBubbleMenuTrigger:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #E3E2E2;
+}
+
+.ChatBubbleMenu {
+  position: absolute;
+  top: 28px;
+  z-index: 20;
+  width: 192px;
+  background: #0D0D12;
+  border: 1px solid #A98FDB;
+  border-radius: 16px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: 0 8px 10px -6px rgba(0, 0, 0, 0.1), 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.ChatBubbleRow.me .ChatBubbleMenu {
+  right: 0;
+}
+
+.ChatBubbleRow.them .ChatBubbleMenu {
+  left: 0;
+}
+
+.ChatBubbleMenuItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: #F5F5F5;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.ChatBubbleMenuItem svg {
+  color: #72DEEF;
+  flex-shrink: 0;
+}
+
+.ChatBubbleMenuItem:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.ChatBubbleMenuItem.delete,
+.ChatBubbleMenuItem.danger {
+  color: #BA1A1A;
+  font-size: 16px;
+}
+
+.ChatBubbleMenuItem.delete svg,
+.ChatBubbleMenuItem.danger svg {
+  color: #BA1A1A;
+}
+
+.ChatBubbleMenuDivider {
+  height: 1px;
+  background: #72DEEF;
+  margin: 4px 8px;
+}
+
+.ChatBubbleMenuHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid rgba(114, 222, 239, 0.3);
+}
+
+.ChatBubbleMenuHeaderThumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.ChatBubbleMenuHeaderName {
+  color: #72DEEF;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ChatBubbleMenuFileCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  margin: 4px;
+  background: #FFFFFF;
+  border: 1px solid rgba(194, 198, 216, 0.3);
+  border-radius: 16px;
+}
+
+.ChatBubbleMenuFileIconBox {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #A98FDB;
+  border-radius: 8px;
+  color: #72DEEF;
+}
+
+.ChatBubbleMenuFileInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ChatBubbleMenuFileName {
+  color: #0D0D12;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ChatBubbleMenuFileSize {
+  color: #6B6B78;
+  font-family: Inter, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.ChatBubbleEditedLabel {
+  color: #7A7A87;
+}
+
+.ChatBubble-editing {
+  max-width: 70%;
+  width: 260px;
+}
+
+.ChatBubbleEditInput {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: #E3E2E2;
+  font-size: 14px;
+  padding: 6px 10px;
+}
+
+.ChatBubbleEditActions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.ChatBubbleEditActions button {
+  background: transparent;
+  border: none;
+  color: #72DEEF;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 2px 4px;
+}
+
+.ChatBubble-media {
+  padding: 8px;
+  gap: 6px;
+}
+
+.ChatImagePlaceholder {
+  width: 220px;
+  max-width: 100%;
+  height: 140px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1c3a52 0%, #0c1520 60%, #274a63 100%);
+}
+
+.ChatBubble-file {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  padding-right: 52px;
+}
+
+.ChatFileMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ChatFileName {
+  font-size: 13px;
+  color: #FFFFFF;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ChatFileSize {
+  font-size: 11px;
+  color: #7A7A87;
+}
+
+.ChatBubble-file .ChatBubbleTime {
+  position: absolute;
+  right: 12px;
+  bottom: 8px;
+}
+
+.ChatBubble-voice {
+  background: #0D0D12;
+  border: 1px solid var(--color-accent-purple);
+  border-radius: 16px;
+  padding: 16px;
+  width: 256px;
+  max-width: 100%;
+}
+
+.ChatBubbleTime-voice {
+  padding: 0 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #C4C7C9;
+}
+
+.ChatVoicePlayer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ChatVoicePlayBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--color-accent-purple);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.ChatVoiceWaveform {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 32px;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.ChatVoiceBar {
+  flex: 1;
+  width: 4px;
+  min-width: 2px;
+  border-radius: 9999px;
+  background: var(--color-accent-purple);
+  opacity: 0.55;
+}
+
+.ChatVoiceBar.played {
+  opacity: 1;
+  background: #F8F7FF;
+}
+
+.ChatVoiceDuration {
+  font-size: 11px;
+  font-weight: 700;
+  color: #F8F7FF;
+  flex-shrink: 0;
+}
+
+.ChatImageBtn {
+  display: block;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.ImageLightboxOverlay {
+  flex-direction: column;
+  gap: 16px;
+  cursor: zoom-out;
+}
+
+.ImageLightboxToolbar {
+  display: flex;
+  gap: 10px;
+  cursor: default;
+}
+
+.ImageLightboxBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: #F8F7FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ImageLightboxBtn:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.ImageLightboxBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.ImageLightboxImg {
+  max-width: min(90vw, 1100px);
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 12px;
+  cursor: default;
+}
+
+.ChatImage {
+  max-width: 260px;
+  max-height: 320px;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  cursor: zoom-in;
+}
+
+.ChatFileDownloadBtn {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: rgba(114, 222, 239, 0.12);
+  color: #72DEEF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.ChatFileDownloadBtn:hover {
+  background: rgba(114, 222, 239, 0.22);
+}
+
+.ChatFileInputHidden {
+  display: none;
+}
+
+.ChatInputBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ChatInputBar button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  color: #C9C9D3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.ChatInputBar button:disabled,
+.ChatInputBar input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ChatInputBar input {
+  flex: 1;
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 10px 16px;
+  color: #E3E2E2;
+  font-size: 14px;
+  outline: none;
+}
+
+.ChatInputBar input:focus {
+  border-color: var(--color-accent-blue);
+}
+
+.ChatInputBar button.active {
+  color: var(--color-accent-blue);
+  background: rgba(114, 222, 239, 0.14);
+}
+
+.ChatRecordingBar {
+  gap: 12px;
+}
+
+.ChatRecordingDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #E5484D;
+  flex-shrink: 0;
+  animation: chatRecordingPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes chatRecordingPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.ChatRecordingTime {
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  color: #E3E2E2;
+  flex-shrink: 0;
+}
+
+.ChatRecordingHint {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  color: #7A7A87;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ChatRecordingCancelBtn {
+  color: #E5484D;
+}
+
+.ChatMicErrorBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 16px;
+  background: rgba(229, 72, 77, 0.12);
+  color: #E5484D;
+  font-size: 12px;
+}
+
+.ChatMicErrorBar button {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.ChatBlockedBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: #9C9CA8;
+  font-size: 13px;
+  text-align: center;
+}
+
+.ChatPinnedBanner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  background: rgba(114, 222, 239, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  text-align: left;
+}
+
+.ChatPinnedBannerIcon {
+  color: #72DEEF;
+  flex-shrink: 0;
+}
+
+.ChatPinnedBannerBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  flex: 1;
+}
+
+.ChatPinnedBannerLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: #72DEEF;
+}
+
+.ChatPinnedBannerText {
+  font-size: 13px;
+  color: #C9C9D3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ChatPinnedBannerClose {
+  background: transparent;
+  border: none;
+  color: #7A7A87;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 4px;
+}
+
+.ChatReplyPreviewBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.ChatReplyPreviewBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  flex: 1;
+}
+
+.ChatReplyPreviewName {
+  font-size: 11px;
+  font-weight: 600;
+  color: #72DEEF;
+}
+
+.ChatReplyPreviewText {
+  font-size: 13px;
+  color: #C9C9D3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ChatReplyPreviewClose {
+  background: transparent;
+  border: none;
+  color: #7A7A87;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 4px;
+}
+
+.ChatRequestBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ChatRequestBar span {
+  color: #9C9CA8;
+  font-size: 13px;
+  margin-right: auto;
+}
+
+.ChatRequestAcceptBtn,
+.ChatRequestDeclineBtn {
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.ChatRequestAcceptBtn {
+  background: rgba(114, 222, 239, 0.14);
+  border: 1px solid rgba(114, 222, 239, 0.35);
+  color: #72DEEF;
+}
+
+.ChatRequestDeclineBtn {
+  background: rgba(186, 26, 26, 0.1);
+  border: 1px solid rgba(186, 26, 26, 0.35);
+  color: #F16A6A;
+}
+
+.ChatRequestPendingBadge {
+  color: #72DEEF;
+  font-size: 10px;
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+.ChatGroupModeToggle {
+  display: flex;
+  gap: 8px;
+  padding: 0 0 4px;
+}
+
+.ChatGroupModeToggle button {
+  flex: 1;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: #9C9CA8;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.ChatGroupModeToggle button.active {
+  background: rgba(114, 222, 239, 0.14);
+  border-color: rgba(114, 222, 239, 0.35);
+  color: #72DEEF;
+}
+
+.ChatGroupTitleInput {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: #E3E2E2;
+  font-size: 13px;
+  outline: none;
+  margin-bottom: 8px;
+}
+
+.ChatGroupChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.ChatGroupChip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(114, 222, 239, 0.1);
+  border: 1px solid rgba(114, 222, 239, 0.3);
+  border-radius: 14px;
+  padding: 4px 8px;
+  color: #72DEEF;
+  font-size: 12px;
+}
+
+.ChatGroupChip button {
+  background: transparent;
+  border: none;
+  color: #72DEEF;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+}
+
+.ChatGroupCreateBtn {
+  width: 100%;
+  background: rgba(114, 222, 239, 0.14);
+  border: 1px solid rgba(114, 222, 239, 0.35);
+  border-radius: 8px;
+  color: #72DEEF;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.ChatGroupCreateBtn:disabled {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.35);
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.ChatParticipantRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+.ChatParticipantRowName {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  color: #E3E2E2;
+}
+
+.ChatParticipantRoleBadge {
+  font-size: 10px;
+  font-weight: 600;
+  color: #72DEEF;
+  background: rgba(114, 222, 239, 0.1);
+  border-radius: 6px;
+  padding: 2px 6px;
+}
+
+.ChatParticipantKickBtn {
+  background: transparent;
+  border: none;
+  color: #F16A6A;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.ChatBlockedBar button {
+  background: rgba(114, 222, 239, 0.1);
+  border: 1px solid rgba(114, 222, 239, 0.35);
+  border-radius: 8px;
+  color: #72DEEF;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ChatSearchBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ChatSearchBar input {
+  flex: 1;
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 7px 12px;
+  color: #E3E2E2;
+  font-size: 13px;
+  outline: none;
+}
+
+.ChatSearchBar input:focus {
+  border-color: var(--color-accent-blue);
+}
+
+.ChatSearchCounter {
+  font-size: 12px;
+  color: #9C9CA8;
+  white-space: nowrap;
+  min-width: 52px;
+  text-align: center;
+}
+
+.ChatSearchBar button {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  color: #C9C9D3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.ChatSearchBar button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ChatSearchMark {
+  background: rgba(255, 179, 71, 0.5);
+  color: inherit;
+  border-radius: 3px;
+  padding: 0 1px;
+}
+
+.ChatBubbleRow.search-active .ChatBubble {
+  outline: 2px solid #FFB347;
+  outline-offset: 1px;
+}
+
+.ChatClearHistoryCheckboxRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #E3E2E2;
+  cursor: pointer;
+}
+
+.ChatSendBtn {
+  background: var(--color-accent-blue) !important;
+  color: #0D0D12 !important;
+}
+
+.ChatBubble-track {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.ChatTrackCover {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.ChatTrackCover.sm {
+  width: 36px;
+  height: 36px;
+}
+
+.ChatTrackCoverFallback {
+  background: linear-gradient(135deg, #1c3a52 0%, #0c1520 60%, #274a63 100%);
+  display: inline-block;
+}
+
+.ChatTrackInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.ChatTrackTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #FFFFFF;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ChatTrackArtist {
+  font-size: 12px;
+  color: #9C9CA8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ChatTrackPlayBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-accent-blue);
+  border: none;
+  color: #0D0D12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.ChatTrackDuration {
+  font-size: 11px;
+  color: #7A7A87;
+  flex-shrink: 0;
+}
+
+.ChatBubble-track .ChatBubbleTime {
+  position: absolute;
+  right: 12px;
+  bottom: 6px;
+}
+
+.ChatSharePanel {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 12px 16px;
+  max-height: 420px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ChatSharePanelHeader {
+  display: flex;
+  gap: 8px;
+}
+
+.ChatSharePanelHeader input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 8px 14px;
+  color: #E3E2E2;
+  font-size: 13px;
+  outline: none;
+}
+
+.ChatSharePanelHeader button {
+  background: var(--color-accent-blue);
+  color: #0D0D12;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ChatSharePanelList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  flex-shrink: 0;
+  min-height: 0;
+}
+
+.ChatSharePanelItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  padding: 8px;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+}
+
+.ChatSharePanelItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.ChatSharePanelItem img,
+.ChatSharePanelItem .ChatTrackCoverFallback {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.ChatSharePanelItemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ChatErrorToast {
+  position: fixed;
+  left: 50%;
+  bottom: 112px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #2A1414;
+  border: 1px solid rgba(242, 107, 107, 0.4);
+  color: #F26B6B;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  z-index: 80;
+  max-width: 90vw;
+}
+
+.ChatErrorToast button {
+  background: transparent;
+  border: none;
+  color: #F26B6B;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.ChatInfoCloseBtn {
+  display: none;
+  margin: 12px 12px 0 auto;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: #C9C9D3;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.ChatInfoProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 16px 16px;
+  text-align: center;
+}
+
+.ChatInfoName {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--color-accent-blue);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ChatAvatarEditBtn {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #0D0D12;
+  background: var(--color-accent-blue);
+  color: #0D0D12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ChatAvatarEditBtn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.ChatInfoNameEditBtn {
+  border: none;
+  background: none;
+  color: #9C9CA8;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+}
+
+.ChatInfoNameEditBtn:hover {
+  color: var(--color-accent-blue);
+}
+
+.ChatGroupTitleEdit {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.ChatGroupTitleEditInput {
+  flex: 1;
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 6px 10px;
+  color: #F8F7FF;
+  font-size: 14px;
+}
+
+.ChatGroupTitleEdit button {
+  border: none;
+  background: none;
+  color: #9C9CA8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+
+.ChatGroupTitleEdit button:hover:not(:disabled) {
+  color: var(--color-accent-blue);
+}
+
+.ChatGroupTitleEdit button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.ChatInfoRole {
+  font-size: 12px;
+  color: #9C9CA8;
+}
+
+.ChatInfoActions {
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 16px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ChatInfoActions button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: #C9C9D3;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.ChatInfoActions button:hover {
+  color: var(--color-accent-blue);
+}
+
+.ChatInfoSection {
+  padding: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  overflow-y: auto;
+}
+
+.ChatInfoSection:last-child {
+  border-bottom: none;
+}
+
+.ChatInfoSectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.ChatInfoSectionHeader span {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #7A7A87;
+}
+
+/* ===== Light theme ===== */
+
+body.light-theme .ChatPage {
+  background: var(--bg-dop);
+}
+
+body.light-theme .ChatList,
+body.light-theme .ChatThread,
+body.light-theme .ChatInfoPanel {
+  background: var(--card-bg);
+  border-color: var(--card-border);
+  box-shadow: var(--card-shadow);
+}
+
+body.light-theme .ChatListTop,
+body.light-theme .ChatThreadHeader,
+body.light-theme .ChatInfoActions,
+body.light-theme .ChatInfoSection,
+body.light-theme .ChatBubbleMenuHeader {
+  border-bottom-color: var(--border-color);
+}
+
+body.light-theme .ChatSearchBox,
+body.light-theme .ChatFilterRow button,
+body.light-theme .ChatThreadActions button,
+body.light-theme .ChatInputBar button,
+body.light-theme .ChatInputBar input,
+body.light-theme .ChatSearchBar input,
+body.light-theme .ChatSearchBar button,
+body.light-theme .ChatGroupModeToggle button,
+body.light-theme .ChatGroupTitleInput,
+body.light-theme .ChatSharePanelHeader input {
+  background: var(--input-bg);
+  border-color: var(--border-color);
+  color: var(--text-muted);
+}
+
+body.light-theme .ChatSearchBox input,
+body.light-theme .ChatInputBar input,
+body.light-theme .ChatSearchBar input,
+body.light-theme .ChatGroupTitleInput,
+body.light-theme .ChatSharePanelHeader input,
+body.light-theme .ChatBubbleEditInput,
+body.light-theme .ChatGroupTitleEditInput {
+  color: var(--input-color);
+  background: var(--input-bg);
+  border-color: var(--border-color);
+}
+
+body.light-theme .ChatSearchBox input::placeholder,
+body.light-theme .ChatInputBar input::placeholder,
+body.light-theme .ChatSearchBar input::placeholder,
+body.light-theme .ChatGroupTitleInput::placeholder,
+body.light-theme .ChatSharePanelHeader input::placeholder {
+  color: var(--input-placeholder);
+}
+
+body.light-theme .ChatFilterRow button.active {
+  background: var(--color-accent-blue);
+  border-color: var(--color-accent-blue);
+  color: #FFFFFF;
+}
+
+body.light-theme .ChatListSectionLabel,
+body.light-theme .ChatListEmpty,
+body.light-theme .ChatListItemTime,
+body.light-theme .ChatListItemSubtitle,
+body.light-theme .ChatDateDivider span,
+body.light-theme .ChatForwardedLabel,
+body.light-theme .ChatFileSize,
+body.light-theme .ChatTrackArtist,
+body.light-theme .ChatTrackDuration,
+body.light-theme .ChatRecordingHint,
+body.light-theme .ChatBlockedBar,
+body.light-theme .ChatBubbleEditedLabel,
+body.light-theme .ChatInfoRole,
+body.light-theme .ChatSearchCounter,
+body.light-theme .ChatInfoSectionHeader span,
+body.light-theme .ChatBubbleMenuFileSize,
+body.light-theme .ChatBubbleTime-voice,
+body.light-theme .ChatVoiceDuration,
+body.light-theme .ChatInfoCloseBtn,
+body.light-theme .ChatInfoNameEditBtn,
+body.light-theme .ChatPinnedBannerClose,
+body.light-theme .ChatReplyPreviewClose,
+body.light-theme .ChatRequestBar span,
+body.light-theme .ChatInfoActions button {
+  color: var(--text-sub);
+}
+
+body.light-theme .ChatUnreadBadge {
+  background: var(--color-accent-blue);
+  color: #FFFFFF;
+}
+
+body.light-theme .ChatListItem {
+  background: var(--card-bg);
+}
+
+body.light-theme .ChatListItem:hover {
+  background: var(--bg-dop);
+}
+
+body.light-theme .ChatListItem.active {
+  background: linear-gradient(rgba(224, 220, 255, 0.7), rgba(224, 220, 255, 0.7)), var(--card-bg);
+}
+
+body.light-theme .ChatListItemName,
+body.light-theme .ChatThreadName,
+body.light-theme .ChatTrackTitle,
+body.light-theme .ChatFileName,
+body.light-theme .ChatParticipantRowName {
+  color: var(--color-text-dop);
+}
+
+body.light-theme .ChatTicketPill {
+  background: var(--color-accent-purple);
+  border-color: var(--color-accent-purple);
+  color: var(--color-text-dop);
+}
+
+body.light-theme .ChatMessages,
+body.light-theme .ChatInputBar {
+  background: #C9D0E6;
+}
+
+body.light-theme .ChatInputBar {
+  border-top-color: var(--border-color);
+}
+
+body.light-theme .ChatDateDivider span {
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+}
+
+body.light-theme .ChatBubble {
+  background: var(--card-bg);
+  box-shadow: 0 2px 6px rgba(0, 61, 71, 0.1);
+}
+
+body.light-theme .ChatBubble p,
+body.light-theme .ChatBubbleEditInput,
+body.light-theme .ChatGroupTitleEditInput,
+body.light-theme .ChatClearHistoryCheckboxRow,
+body.light-theme .ChatRecordingTime {
+  color: var(--color-text-main);
+}
+
+body.light-theme .ChatBubbleRow.me .ChatBubble {
+  background: var(--bg-dop);
+  border-color: rgba(0, 61, 71, 0.16);
+}
+
+body.light-theme .ChatReplyQuoteText,
+body.light-theme .ChatPinnedBannerText,
+body.light-theme .ChatReplyPreviewText {
+  color: var(--color-text-main);
+}
+
+body.light-theme .ChatBubbleMenuTrigger {
+  color: var(--text-sub);
+}
+
+body.light-theme .ChatBubbleMenuTrigger:hover {
+  background: var(--bg-dop);
+  color: var(--color-text-main);
+}
+
+body.light-theme .ChatBubbleMenu {
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+}
+
+body.light-theme .ChatBubbleMenuItem {
+  color: var(--color-text-main);
+}
+
+body.light-theme .ChatBubbleMenuItem:hover {
+  background: var(--bg-dop);
+}
+
+body.light-theme .ChatReplyQuoteName,
+body.light-theme .ChatBubbleMenuItem svg,
+body.light-theme .ChatBubbleMenuHeaderName,
+body.light-theme .ChatBubbleMenuFileIconBox,
+body.light-theme .ChatBubbleEditActions button,
+body.light-theme .ChatFileDownloadBtn,
+body.light-theme .ChatPinnedBannerIcon,
+body.light-theme .ChatPinnedBannerLabel,
+body.light-theme .ChatReplyPreviewName,
+body.light-theme .ChatRequestAcceptBtn,
+body.light-theme .ChatRequestPendingBadge,
+body.light-theme .ChatGroupModeToggle button.active,
+body.light-theme .ChatGroupChip,
+body.light-theme .ChatGroupChip button,
+body.light-theme .ChatGroupCreateBtn:not(:disabled),
+body.light-theme .ChatParticipantRoleBadge,
+body.light-theme .ChatBlockedBar button,
+body.light-theme .ChatVoicePlayBtn,
+body.light-theme .ChatInfoName {
+  color: var(--color-accent-blue);
+}
+
+body.light-theme .ChatVoicePlayBtn {
+  border-color: var(--color-accent-blue);
+}
+
+body.light-theme .ChatReplyQuote {
+  border-left-color: var(--color-accent-blue);
+  background: rgba(0, 61, 71, 0.05);
+}
+
+body.light-theme .ChatBubbleMenuDivider {
+  background: var(--border-color);
+}
+
+body.light-theme .ChatRequestDeclineBtn,
+body.light-theme .ChatParticipantKickBtn {
+  color: #BA1A1A;
+}
+
+body.light-theme .ChatGroupCreateBtn:disabled {
+  background: var(--bg-dop);
+  border-color: var(--border-color);
+  color: var(--text-sub);
+}
+
+body.light-theme .ChatBubble-voice {
+  background: var(--card-bg);
+}
+
+body.light-theme .ChatVoiceBar {
+  background: rgba(0, 61, 71, 0.35);
+}
+
+body.light-theme .ChatVoiceBar.played {
+  background: var(--color-text-dop);
+}
+
+body.light-theme .ChatSendBtn,
+body.light-theme .ChatTrackPlayBtn,
+body.light-theme .ChatSharePanelHeader button,
+body.light-theme .ChatAvatarEditBtn {
+  color: #FFFFFF !important;
+}
+
+body.light-theme .ChatAvatarEditBtn {
+  border-color: var(--card-bg);
+}
+
+body.light-theme .ChatBlockedBar,
+body.light-theme .ChatSearchBar {
+  border-top-color: var(--border-color);
+}
+
+body.light-theme .ChatSearchBar {
+  border-bottom-color: var(--border-color);
+}
+
+body.light-theme .ChatPinnedBanner {
+  background: var(--bg-dop);
+  border-bottom-color: var(--border-color);
+}
+
+body.light-theme .ChatReplyPreviewBar {
+  background: var(--card-bg);
+  border-top-color: var(--border-color);
+}
+
+body.light-theme .ChatRequestBar {
+  border-top-color: var(--border-color);
+}
+
+body.light-theme .ChatSharePanel {
+  border-top-color: var(--border-color);
+}
+
+body.light-theme .ChatSharePanelItem:hover {
+  background: var(--bg-dop);
+}
+
+body.light-theme .ChatErrorToast {
+  background: #FDEBEA;
+  border-color: rgba(186, 26, 26, 0.3);
+  color: #BA1A1A;
+}
+
+body.light-theme .ChatErrorToast button {
+  color: #BA1A1A;
+}
+
+.ChatLinkBtn {
+  background: transparent;
+  border: none;
+  color: var(--color-accent-blue);
+  font-size: 11px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.ChatMediaGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.ChatMediaThumb {
+  aspect-ratio: 1;
+  border-radius: 10px;
+}
+
+.ChatMediaThumb.thumb-0 {
+  background: linear-gradient(135deg, #3a5a40, #1c2e20);
+}
+
+.ChatMediaThumb.thumb-1 {
+  background: linear-gradient(135deg, #274a63, #0c1520);
+}
+
+.ChatMediaThumb.thumb-2 {
+  background: linear-gradient(135deg, #5c3a6b, #20111f);
+}
+
+.ChatMediaThumb.thumb-3 {
+  background: linear-gradient(135deg, #6b5a3a, #241f10);
+}
+
+.ChatFileList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ChatFileCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+}
+
+.ChatFileCard:hover {
+  border-color: var(--color-accent-blue);
+}
+
+.ChatFileCard svg {
+  color: var(--color-accent-blue);
+  flex-shrink: 0;
+}
+
+.ChatSettingsRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #E3E2E2;
+  font-size: 13px;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.ChatSettingsRow svg {
+  color: #9C9CA8;
+  flex-shrink: 0;
+}
+
+.ChatSettingsRow span:nth-child(2) {
+  flex: 1;
+  text-align: left;
+}
+
+.ChatSettingsRow.danger {
+  color: #F26B6B;
+}
+
+.ChatSettingsRow.danger svg {
+  color: #F26B6B;
+}
+
+.ChatToggle {
+  width: 34px;
+  height: 20px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+
+.ChatToggle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  transition: transform 0.2s ease;
+}
+
+.ChatToggle.on {
+  background: var(--color-accent-blue);
+}
+
+.ChatToggle.on::after {
+  transform: translateX(14px);
+}
+
+.ChatInfoBackdrop {
+  display: none;
+}
+
+.ChatThreadEmpty {
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.ChatThreadEmpty p {
+  color: #7A7A87;
+  font-size: 14px;
+  text-align: center;
+}
+
+@media (max-width: 1400px) {
+  .ChatPage {
+    grid-template-columns: 280px 1fr;
+  }
+
+  .ChatInfoPanel {
+    position: fixed;
+    top: 80px;
+    right: 0;
+    bottom: 96px;
+    width: 320px;
+    max-width: 88vw;
+    border-radius: 16px 0 0 16px;
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+    z-index: 60;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.4);
+  }
+
+  .ChatPage.info-open .ChatInfoPanel {
+    transform: translateX(0);
+  }
+
+  .ChatInfoCloseBtn {
+    display: flex;
+  }
+
+  .ChatInfoBackdrop {
+    display: block;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 96px;
+    background: rgba(13, 13, 18, 0.55);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 55;
+  }
+}
+
+@media (max-width: 1024px) {
+  .ChatPage {
+    padding: 16px;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ChatPage {
+    grid-template-columns: 1fr;
+    margin-top: 70px;
+    margin-bottom: 80px;
+    height: calc(100vh - 150px);
+    padding: 10px;
+    gap: 0;
+  }
+
+  .ChatList,
+  .ChatThread {
+    border-radius: 14px;
+  }
+
+  .ChatThread {
+    display: none;
+  }
+
+  .ChatPage.has-selection .ChatList {
+    display: none;
+  }
+
+  .ChatPage.has-selection .ChatThread {
+    display: flex;
+  }
+
+  .ChatBackBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ChatInfoPanel {
+    top: 70px;
+    bottom: 80px;
+    width: 100%;
+    max-width: 100vw;
+    border-radius: 0;
+  }
+
+  .ChatInfoBackdrop {
+    top: 70px;
+    bottom: 80px;
+  }
+
+  .ChatBubble {
+    max-width: 84%;
+  }
+
+  .ChatBubbleContentCol {
+    max-width: 84%;
+  }
+
+  .ChatImagePlaceholder {
+    width: 100%;
+  }
+}

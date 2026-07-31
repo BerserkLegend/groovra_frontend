@@ -1,0 +1,269 @@
+.AuthModalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.AuthModalBackdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 8, 14, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.AuthModalContainer {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background: linear-gradient(145deg, rgba(22, 22, 34, 0.95), rgba(14, 14, 24, 0.98));
+  border: 1px solid rgba(114, 222, 239, 0.25);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(114, 222, 239, 0.15);
+  border-radius: 24px;
+  padding: 36px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.AuthModalCloseBtn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a98fdb;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.AuthModalCloseBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transform: rotate(90deg);
+}
+
+.AuthModalIconBadge {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(114, 222, 239, 0.15), rgba(169, 143, 219, 0.25));
+  border: 1px solid rgba(114, 222, 239, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px rgba(114, 222, 239, 0.2);
+}
+
+.AuthModalLockIcon {
+  color: #72deef;
+}
+
+.AuthModalTitle {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 30%, #72deef 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.AuthModalSubtitle {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 28px 0;
+  max-width: 360px;
+}
+
+.AuthModalActions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.AuthModalRegisterBtn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, #72deef 0%, #4a90e2 100%);
+  color: #0d0d12;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(114, 222, 239, 0.35);
+  transition: all 0.2s ease;
+}
+
+.AuthModalRegisterBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(114, 222, 239, 0.5);
+  filter: brightness(1.08);
+}
+
+.AuthModalRegisterBtn:active {
+  transform: translateY(0);
+}
+
+.AuthModalLoginBtn {
+  width: 100%;
+  padding: 13px;
+  border-radius: 14px;
+  border: 1px solid rgba(169, 143, 219, 0.4);
+  background: rgba(169, 143, 219, 0.1);
+  color: #a98fdb;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.AuthModalLoginBtn:hover {
+  background: rgba(169, 143, 219, 0.2);
+  border-color: rgba(169, 143, 219, 0.6);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.AuthModalContinueBtn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 8px 16px;
+  transition: color 0.2s ease;
+}
+
+.AuthModalContinueBtn:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+  .AuthModalOverlay {
+    padding: 16px;
+    z-index: 10005;
+  }
+
+  .AuthModalContainer {
+    max-width: 100%;
+    border-radius: 20px;
+    padding: 28px 20px 20px;
+  }
+
+  .AuthModalIconBadge {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+  }
+
+  .AuthModalLockIcon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .AuthModalTitle {
+    font-size: 20px;
+  }
+
+  .AuthModalSubtitle {
+    font-size: 13px;
+    margin-bottom: 22px;
+  }
+
+  .AuthModalRegisterBtn {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .AuthModalLoginBtn {
+    padding: 11px;
+    font-size: 14px;
+  }
+}
+
+body.light-theme .AuthModalContainer,
+html.light-theme .AuthModalContainer {
+  background: #FFFFFF !important;
+  border: 1px solid #E0DCFF !important;
+  box-shadow: 0 20px 50px rgba(0, 61, 71, 0.15) !important;
+  color: #222A31 !important;
+}
+
+body.light-theme .AuthModalTitle,
+html.light-theme .AuthModalTitle {
+  color: #222A31 !important;
+  -webkit-text-fill-color: initial !important;
+  background: none !important;
+}
+
+body.light-theme .AuthModalSubtitle,
+html.light-theme .AuthModalSubtitle {
+  color: #003D47 !important;
+}
+
+body.light-theme .AuthModalRegisterBtn,
+html.light-theme .AuthModalRegisterBtn {
+  background: #003D47 !important;
+  color: #FFFFFF !important;
+}
+
+body.light-theme .AuthModalLoginBtn,
+html.light-theme .AuthModalLoginBtn {
+  background: #EDF8FF !important;
+  border: 1px solid #003D47 !important;
+  color: #003D47 !important;
+}
+
+body.light-theme .AuthModalContinueBtn,
+html.light-theme .AuthModalContinueBtn {
+  color: rgba(34, 42, 49, 0.7) !important;
+}
+
+.AuthModalRegisterBtn:disabled,
+.AuthModalLoginBtn:disabled {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.35);
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+body.light-theme .AuthModalRegisterBtn:disabled,
+html.light-theme .AuthModalRegisterBtn:disabled,
+body.light-theme .AuthModalLoginBtn:disabled,
+html.light-theme .AuthModalLoginBtn:disabled {
+  background: rgba(0, 0, 0, 0.06) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  color: rgba(0, 0, 0, 0.32) !important;
+  box-shadow: none !important;
+}
+

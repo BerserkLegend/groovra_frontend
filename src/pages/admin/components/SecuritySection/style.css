@@ -1,0 +1,192 @@
+.AdminSecSection {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}
+
+.SecGlow {
+  position: absolute;
+  z-index: -1;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.SecGlowTop {
+  width: 480px;
+  height: 480px;
+  top: -220px;
+  left: -190px;
+  background-color: rgba(87, 27, 193, 0.1);
+  filter: blur(60px);
+}
+
+.SecGlowBottom {
+  width: 385px;
+  height: 435px;
+  right: -190px;
+  bottom: -110px;
+  background-color: rgba(89, 232, 255, 0.05);
+  filter: blur(50px);
+}
+
+.SecPageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.SecTitle {
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  color: #e5e2e1;
+  margin: 0;
+}
+
+.SecSubtitle {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #bbc9cc;
+  margin: 0;
+}
+
+.SecSectionHeading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 20px;
+  color: #ffffff;
+  margin: -8px 0 0 0;
+}
+
+.SecSectionHeading img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.SecStatsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.SecStatCard {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 19px 24px;
+  background: #0d0d12;
+  border: 1px solid #72deef;
+  border-radius: 30px;
+  min-height: 113px;
+}
+
+.SecStatLabel {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+}
+
+.SecStatValue {
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 32px;
+  color: #ffffff;
+}
+
+.SecDetailCard {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 19px 24px;
+  background: #0d0d12;
+  border: 1px solid #72deef;
+  border-radius: 30px;
+  min-height: 113px;
+}
+
+.SecDetailIconWrap {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 49px;
+  height: 49px;
+}
+
+.SecDetailIconWrap img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.SecDetailInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.SecDetailLabel {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.SecDetailValue {
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 20px;
+  color: #ffffff;
+}
+
+.SecDetailAction {
+  align-self: flex-start;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 20px;
+  color: #ffffff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.SecDetailAction:hover {
+  color: #72deef;
+}
+
+@media (max-width: 1280px) {
+  .SecStatsRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .SecStatsRow {
+    grid-template-columns: 1fr;
+  }
+}

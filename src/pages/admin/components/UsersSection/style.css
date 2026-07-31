@@ -1,0 +1,1411 @@
+.AdminUsrSection {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}
+
+.UsrGlow {
+  position: absolute;
+  z-index: -1;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.UsrGlowTop {
+  width: 480px;
+  height: 480px;
+  top: -220px;
+  left: -190px;
+  background-color: rgba(87, 27, 193, 0.1);
+  filter: blur(60px);
+}
+
+.UsrGlowBottom {
+  width: 385px;
+  height: 435px;
+  right: -190px;
+  bottom: -110px;
+  background-color: rgba(89, 232, 255, 0.05);
+  filter: blur(50px);
+}
+
+.UsrPageHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.UsrHeaderText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.UsrTitle {
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  color: #e5e2e1;
+  margin: 0;
+}
+
+.UsrStatsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.UsrSubtitle {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #bbc9cc;
+}
+
+.UsrTotalBadge {
+  box-sizing: border-box;
+  padding: 2px 8px;
+  background: rgba(215, 248, 255, 0.1);
+  border: 1px solid #a98fdb;
+  border-radius: 9999px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #72deef;
+  white-space: nowrap;
+}
+
+.UsrTabSwitcher {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 4px;
+  background: #0d0d12;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  border-radius: 12px;
+}
+
+.UsrTabBtn {
+  box-sizing: border-box;
+  padding: 8px 24px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #f5f5f5;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.UsrTabBtn:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.UsrTabBtnActive {
+  border-color: #a98fdb;
+  filter: drop-shadow(0px 0px 15px rgba(208, 188, 255, 0.3));
+  font-weight: 600;
+}
+
+.UsrQueueHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.UsrQueueHeaderText {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 512px;
+}
+
+.UsrBreadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.UsrBreadcrumbItem {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #bbc9cc;
+}
+
+.UsrBreadcrumbItemActive {
+  color: #d7f8ff;
+}
+
+.UsrBreadcrumbItemMuted {
+  font-weight: 500;
+  font-size: 13px;
+  color: rgba(215, 248, 255, 0.6);
+}
+
+.UsrBreadcrumbSep {
+  width: 4px;
+  height: 6px;
+  background: #bbc9cc;
+  flex: none;
+}
+
+.UsrQueueTitle {
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  color: #d7f8ff;
+  margin: 0;
+}
+
+.UsrQueueDesc {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #bbc9cc;
+  margin: 0;
+}
+
+.UsrQueueStatsCard {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px;
+  background: rgba(19, 19, 19, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.37);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+}
+
+.UsrQueueStatItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 90px;
+}
+
+.UsrQueueStatBordered {
+  padding-right: 16px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.UsrQueueStatLabel {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: #a98fdb;
+}
+
+.UsrQueueStatValue {
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  color: #72deef;
+}
+
+.UsrBatchBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  padding: 22px 24px;
+  height: 70px;
+  background: #a98fdb;
+  border: none;
+  border-radius: 12px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #00363e;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.UsrBatchBtn img {
+  width: 15px;
+  height: 10px;
+  object-fit: contain;
+}
+
+.UsrBatchBtn:hover {
+  transform: translateY(-1px);
+}
+
+.UsrCatalogLayout {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.UsrFiltersAside {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 288px;
+  flex: none;
+}
+
+.UsrFiltersCard {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background: #0d0d12;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+}
+
+.UsrFiltersHeading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #e5e2e1;
+}
+
+.UsrFiltersHeading img {
+  width: 14px;
+  height: 9px;
+  object-fit: contain;
+}
+
+.UsrFilterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.UsrFilterGroupBordered {
+  padding-top: 17px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.UsrFilterGroupLabel {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: #bbc9cc;
+}
+
+.UsrCheckboxList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.UsrCheckboxRow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 8px 11px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.UsrCheckboxRow:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.UsrCheckbox {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  accent-color: #72deef;
+  cursor: pointer;
+  flex: none;
+}
+
+.UsrCheckboxLabel {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #e5e2e1;
+}
+
+.UsrSelectBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.UsrSelect {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  padding: 8px 40px 8px 12px;
+  background: #16161f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #e5e2e1;
+  cursor: pointer;
+}
+
+.UsrSelectCaret {
+  position: absolute;
+  right: 12px;
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.UsrClearFiltersBtn {
+  box-sizing: border-box;
+  padding: 10px 0;
+  width: 100%;
+  background: transparent;
+  border: 1px solid #a98fdb;
+  border-radius: 8px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #72deef;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.UsrClearFiltersBtn:hover {
+  background: rgba(169, 143, 219, 0.1);
+}
+
+.UsrTipCard {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+  background: linear-gradient(180deg, rgba(114, 222, 239, 0.1) 0%, rgba(169, 143, 219, 0.1) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+}
+
+.UsrTipLabel {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #bbc9cc;
+}
+
+.UsrTipText {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 23px;
+  color: #e5e2e1;
+  margin: 0;
+}
+
+.UsrKbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 24px;
+  height: 18px;
+  padding: 0 6px;
+  background: #0d0d12;
+  border: 1px solid #a98fdb;
+  border-radius: 4px;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  color: #e5e2e1;
+  margin: 0 2px;
+}
+
+.UsrBentoGrid {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.UsrCard {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  background: #0d0d12;
+  border: 1px solid #a98fdb;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+}
+
+.UsrCardHighlight {
+  border-color: #72deef;
+}
+
+.UsrCardSuspended .UsrCardHead {
+  opacity: 0.6;
+  filter: grayscale(1);
+}
+
+.UsrStatusPill {
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.UsrStatusPillActive {
+  background: rgba(34, 197, 94, 0.1);
+  color: #4ade80;
+}
+
+.UsrStatusPillSuspended {
+  background: rgba(255, 180, 171, 0.1);
+  color: #ffb4ab;
+}
+
+.UsrStatusPillNeutral {
+  background: rgba(114, 222, 239, 0.1);
+  color: #72deef;
+  text-transform: capitalize;
+}
+
+.UsrStatusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: currentColor;
+  flex: none;
+}
+
+.UsrCardHead {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 24px;
+}
+
+.UsrAvatar {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #2a2a35, #16161f);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.UsrAvatarSm {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+}
+
+.UsrCardHeadInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.UsrCardName {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #e5e2e1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.UsrCardEmail {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #f5f5f5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.UsrCardInfoRow {
+  display: flex;
+  gap: 8px;
+  padding-bottom: 24px;
+}
+
+.UsrCardInfoBox {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 12px;
+  background: #16161f;
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.UsrCardInfoLabel {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: #bbc9cc;
+}
+
+.UsrCardInfoValue {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #e5e2e1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.UsrCardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.UsrCardFooterIcons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.UsrIconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33px;
+  height: 37px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.UsrIconBtn img {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+}
+
+.UsrIconBtn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.UsrSuspendBtn {
+  box-sizing: border-box;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid #a98fdb;
+  border-radius: 8px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 24px;
+  color: #72deef;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.UsrSuspendBtn:hover {
+  background: rgba(169, 143, 219, 0.1);
+}
+
+.UsrCreateCard {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 32px;
+  background: #0d0d12;
+  border: 1px dashed #a98fdb;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.UsrCreateCard:hover {
+  background: rgba(169, 143, 219, 0.06);
+}
+
+.UsrCreateIconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #16161f;
+  border-radius: 9999px;
+}
+
+.UsrCreateIconWrap img {
+  width: 22px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.UsrCreateTitle {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #e5e2e1;
+  text-align: center;
+}
+
+.UsrCreateSubtitle {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #f5f5f5;
+  text-align: center;
+}
+
+.UsrEmptyState {
+  grid-column: 1 / -1;
+  padding: 40px;
+  text-align: center;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  color: #bbc9cc;
+}
+
+.UsrQueueTableCard {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background: #0d0d12;
+  border: 1px solid #a98fdb;
+  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.37);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.UsrQueueScroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.UsrQueueHeaderRow,
+.UsrQueueRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.3fr 1.3fr;
+  align-items: center;
+  min-width: 900px;
+}
+
+.UsrQueueHeaderRow {
+  background: #16161f;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.UsrQueueRow {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.UsrQueueRow:first-child {
+  border-top: none;
+}
+
+.UsrQCell {
+  box-sizing: border-box;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+}
+
+.UsrQueueHeaderRow .UsrQCell {
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #72deef;
+}
+
+.UsrQCellFollowers {
+  justify-content: center;
+  text-align: center;
+}
+
+.UsrQCellActions {
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.UsrQCellArtist {
+  gap: 16px;
+}
+
+.UsrQArtistInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.UsrQArtistName {
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #e5e2e1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.UsrQArtistEmail {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #bbc9cc;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.UsrQCellStatus {
+  gap: 8px;
+}
+
+.UsrQStatusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #d7f8ff;
+  flex: none;
+}
+
+.UsrQStatusText {
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #44d8ef;
+  text-shadow: 0px 0px 8px rgba(68, 216, 239, 0.5);
+}
+
+.UsrQCellFollowers {
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #e5e2e1;
+}
+
+.UsrQCellDate {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.UsrQDateLine {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #bbc9cc;
+}
+
+.UsrQTimeLine {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: #a98fdb;
+}
+
+.UsrQActionBtn {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(19, 19, 19, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.UsrQActionBtn img {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+}
+
+.UsrQActionBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.UsrQActionView img {
+  filter: drop-shadow(0 0 0 #72deef);
+}
+
+.UsrQueueEmptyRow {
+  padding: 40px 24px;
+  text-align: center;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  color: #bbc9cc;
+  min-width: 900px;
+}
+
+.UsrQueuePagination {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  background: #16161f;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.UsrQueuePaginationSummary {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #a98fdb;
+}
+
+.UsrQueuePaginationArrows {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.UsrPageArrow {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(19, 19, 19, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.37);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.UsrPageArrow img {
+  width: 7px;
+  height: 12px;
+  object-fit: contain;
+}
+
+.UsrPageArrow:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.UsrPageArrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.UsrSearchInput {
+  cursor: text;
+}
+
+.UsrSearchInput::placeholder {
+  color: #6b7280;
+}
+
+.UsrCatalogMain {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.UsrCatalogPagination {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.UsrIconBtn:disabled,
+.UsrSuspendBtn:disabled,
+.UsrBatchBtn:disabled,
+.UsrCreateCardDisabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.UsrIconBtn:disabled:hover,
+.UsrCreateCardDisabled:hover {
+  background: inherit;
+}
+
+/* Modal Styles */
+.UsrModalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.UsrModal {
+  background: #16161f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.UsrModalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.UsrModalTitle {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: #e5e2e1;
+}
+
+.UsrModalClose {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #9ca3af;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.UsrModalBody {
+  margin-bottom: 16px;
+}
+
+.UsrFormField {
+  margin-bottom: 16px;
+}
+
+.UsrFormLabel {
+  display: block;
+  margin-bottom: 8px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #d1d5db;
+}
+
+.UsrFormInput,
+.UsrFormSelect {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  color: #e5e2e1;
+  outline: none;
+}
+
+.UsrFormInput:focus,
+.UsrFormSelect:focus {
+  border-color: #72deef;
+}
+
+.UsrModalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.UsrLinkBtn {
+  padding: 8px 16px;
+  background: rgba(114, 222, 239, 0.1);
+  border: 1px solid rgba(114, 222, 239, 0.3);
+  border-radius: 8px;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  color: #72deef;
+  cursor: pointer;
+}
+
+.UsrLinkBtn:hover {
+  background: rgba(114, 222, 239, 0.2);
+}
+
+.UsrErrorNote {
+  padding: 8px 12px;
+  background: rgba(255, 100, 100, 0.1);
+  border: 1px solid rgba(255, 100, 100, 0.3);
+  border-radius: 8px;
+  font-size: 14px;
+  color: #ff8787;
+  margin-bottom: 16px;
+}
+
+/* Bulk Action */
+.UsrBulkActionNote {
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  background: rgba(114, 222, 239, 0.1);
+  border: 1px solid rgba(114, 222, 239, 0.3);
+  border-radius: 8px;
+  font-size: 14px;
+  color: #72deef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.UsrBulkApproveBtn,
+.UsrBulkRejectBtn {
+  padding: 4px 12px;
+  background: transparent;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  border-radius: 6px;
+  font-size: 12px;
+  color: #4ade80;
+  cursor: pointer;
+}
+
+.UsrBulkRejectBtn {
+  border-color: rgba(255, 180, 171, 0.3);
+  color: #ffb4ab;
+}
+
+.UsrCheckbox {
+  accent-color: #72deef;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Modal Styles */
+.UsrModalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.UsrModal {
+  background: #16161f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.UsrModalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.UsrModalTitle {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: #e5e2e1;
+}
+
+.UsrModalClose {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #9ca3af;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.UsrModalBody {
+  margin-bottom: 16px;
+}
+
+.UsrFormField {
+  margin-bottom: 16px;
+}
+
+.UsrFormLabel {
+  display: block;
+  margin-bottom: 8px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #d1d5db;
+}
+
+.UsrFormInput,
+.UsrFormSelect {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  color: #e5e2e1;
+  outline: none;
+}
+
+.UsrFormInput:focus,
+.UsrFormSelect:focus {
+  border-color: #72deef;
+}
+
+.UsrModalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.UsrLinkBtn {
+  padding: 8px 16px;
+  background: rgba(114, 222, 239, 0.1);
+  border: 1px solid rgba(114, 222, 239, 0.3);
+  border-radius: 8px;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  color: #72deef;
+  cursor: pointer;
+}
+
+.UsrLinkBtn:hover {
+  background: rgba(114, 222, 239, 0.2);
+}
+
+.UsrErrorNote {
+  padding: 8px 12px;
+  background: rgba(255, 100, 100, 0.1);
+  border: 1px solid rgba(255, 100, 100, 0.3);
+  border-radius: 8px;
+  font-size: 14px;
+  color: #ff8787;
+  margin-bottom: 16px;
+}
+
+/* Bulk Action */
+.UsrBulkActionNote {
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  background: rgba(114, 222, 239, 0.1);
+  border: 1px solid rgba(114, 222, 239, 0.3);
+  border-radius: 8px;
+  font-size: 14px;
+  color: #72deef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.UsrBulkApproveBtn,
+.UsrBulkRejectBtn {
+  padding: 4px 12px;
+  background: transparent;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  border-radius: 6px;
+  font-size: 12px;
+  color: #4ade80;
+  cursor: pointer;
+}
+
+.UsrBulkRejectBtn {
+  border-color: rgba(255, 180, 171, 0.3);
+  color: #ffb4ab;
+}
+
+.UsrCheckbox {
+  accent-color: #72deef;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.UsrQueueStatusSelect {
+  min-width: 140px;
+}
+
+.UsrQueueDetailRow {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 12px 24px;
+  min-width: 900px;
+  background: rgba(114, 222, 239, 0.04);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-family: "Manrope", sans-serif;
+  font-size: 13px;
+  color: #bbc9cc;
+}
+
+.UsrQueueDetailRow strong {
+  color: #e5e2e1;
+  font-weight: 500;
+}
+
+.UsrQueueDetailRowError {
+  background: rgba(255, 180, 171, 0.08);
+  color: #ffb4ab;
+}
+
+.UsrCardActionNote {
+  box-sizing: border-box;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: rgba(114, 222, 239, 0.08);
+  border-radius: 8px;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  color: #72deef;
+}
+
+.UsrCardActionNoteError {
+  background: rgba(255, 180, 171, 0.08);
+  color: #ffb4ab;
+}
+
+@media (max-width: 1280px) {
+  .UsrBentoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 960px) {
+  .UsrCatalogLayout {
+    flex-direction: column;
+  }
+
+  .UsrFiltersAside {
+    width: 100%;
+  }
+
+  .UsrBentoGrid {
+    grid-template-columns: 1fr;
+  }
+}

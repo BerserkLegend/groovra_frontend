@@ -1,0 +1,180 @@
+.AdminActFee {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.HeaderActFee {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.HeaderBarActFee {
+  flex: none;
+  width: 4px;
+  height: 24px;
+  background-color: #d7f8ff;
+  border-radius: 9999px;
+}
+
+.HeaderTitleActFee {
+  font-family: "Manrope", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #e5e2e1;
+  margin: 0;
+}
+
+.CardActFee {
+  box-sizing: border-box;
+  position: relative;
+  isolation: isolate;
+  background-color: rgba(11, 14, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.CardActFee::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: linear-gradient(102deg, rgba(114, 222, 239, 0.1) 0%, rgba(169, 143, 219, 0.1) 100%);
+  border-radius: inherit;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.ItemActFee {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px;
+}
+
+.ItemActFee + .ItemActFee {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ItemLeftActFee {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-width: 0;
+}
+
+.IconBoxActFee {
+  box-sizing: border-box;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: #353534;
+  border: 1px solid rgba(215, 248, 255, 0.2);
+  border-radius: 12px;
+}
+
+.IconBoxActFee img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.IconBoxActFeeWarning {
+  background-color: rgba(147, 0, 10, 0.2);
+  border-color: rgba(255, 180, 171, 0.2);
+}
+
+.IconBoxActFeeAccent {
+  background-color: rgba(87, 27, 193, 0.2);
+  border-color: rgba(208, 188, 255, 0.2);
+}
+
+.IconBoxActFeeMuted {
+  background-color: #353534;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.ActFeeTextBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.ActFeeItemTitle {
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #e5e2e1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ActFeeItemSubtitle {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #bbc9cc;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ActFeeItemRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: none;
+}
+
+.ActFeeBadge {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  height: 34px;
+  border: 1px solid #a98fdb;
+  border-radius: 9999px;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #72deef;
+  white-space: nowrap;
+}
+
+.ActFeeMenuBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: #bbc9cc;
+  cursor: pointer;
+}
+
+.ActFeeMenuBtn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ActFeeMenuBtn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}

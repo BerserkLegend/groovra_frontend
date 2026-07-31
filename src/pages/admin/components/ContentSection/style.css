@@ -1,0 +1,972 @@
+.AdminContSection {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.ContGlow {
+  position: absolute;
+  z-index: -1;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.ContGlowTop {
+  width: 420px;
+  height: 420px;
+  top: -160px;
+  right: -120px;
+  background-color: rgba(169, 143, 219, 0.1);
+  filter: blur(60px);
+}
+
+.ContGlowBottom {
+  width: 380px;
+  height: 380px;
+  bottom: -140px;
+  left: -120px;
+  background-color: rgba(114, 222, 239, 0.13);
+  filter: blur(50px);
+}
+
+.ContPageHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  padding-bottom: 16px;
+}
+
+.ContHeaderText {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ContTitle {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #d7f8ff;
+  margin: 0;
+}
+
+.ContStatsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.ContStat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #bbc9cc;
+  white-space: nowrap;
+}
+
+.ContStatDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background-color: #72deef;
+}
+
+.ContStatSep {
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.ContHeaderActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.ContBtnOutline {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  height: 46px;
+  background: transparent;
+  border: 1px solid #a98fdb;
+  border-radius: 12px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #e5e2e1;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+
+.ContBtnOutline img {
+  width: 18px;
+  height: 12px;
+  object-fit: contain;
+}
+
+.ContBtnOutline:hover,
+.ContBtnOutlineActive {
+  background: rgba(169, 143, 219, 0.12);
+}
+
+.ContBtnPrimary {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10.5px 24px 11px;
+  height: 46px;
+  background: linear-gradient(90deg, #72deef 0%, #a98fdb 100%);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0px 10px 15px -3px rgba(87, 27, 193, 0.2), 0px 4px 6px -4px rgba(87, 27, 193, 0.2);
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0d0d12;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.15s ease;
+}
+
+.ContBtnPrimary img {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.ContBtnPrimary:hover {
+  transform: translateY(-1px);
+}
+
+.ContToolbar {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background-color: #0d0d12;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+}
+
+.ContToolbarLeft {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.ContSelectAllBox {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background-color: #0e0e0e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.ContCheckbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  accent-color: #72deef;
+  cursor: pointer;
+  flex: none;
+}
+
+.ContSelectAllLabel {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #bbc9cc;
+  white-space: nowrap;
+}
+
+.ContDivider {
+  width: 1px;
+  height: 24px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ContBulkActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.ContToolbarBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #bbc9cc;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+
+.ContToolbarBtn img {
+  width: 16px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.ContToolbarBtn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.ContToolbarBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ContToolbarRight {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.ContSortBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ContSortSelect {
+  appearance: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  padding: 8px 40px 8px 16px;
+  background-color: #16161f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #bbc9cc;
+  cursor: pointer;
+  max-width: 280px;
+}
+
+.ContSelectCaret {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 15px;
+  height: 15px;
+  pointer-events: none;
+}
+
+.ContViewToggle {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  background-color: #16161f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.ContViewBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.ContViewBtn img {
+  width: 18px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.ContViewBtnActive {
+  background-color: #a98fdb;
+}
+
+.ContFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.ContFilterBox {
+  box-sizing: border-box;
+  flex: 1 1 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  background-color: #0d0d12;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.ContFilterLabel {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #bbc9cc;
+}
+
+.ContFilterValueRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ContFilterSelect {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4px 32px 4px 0;
+  background: transparent;
+  border: none;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #e5e2e1;
+  cursor: pointer;
+}
+
+.ContFilterReset {
+  box-sizing: border-box;
+  flex: 1 1 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 12px;
+  min-height: 77px;
+  background-color: #0d0d12;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #d0bcff;
+  cursor: pointer;
+}
+
+.ContFilterReset img {
+  width: 16px;
+  height: 18.45px;
+  object-fit: contain;
+}
+
+.ContTableCard {
+  box-sizing: border-box;
+  background-color: #0d0d12;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.ContTableScroll {
+  overflow-x: auto;
+}
+
+.ContTableHeaderRow,
+.ContRow {
+  display: grid;
+  grid-template-columns: 56px 2.2fr 1fr 1fr 1.1fr 0.9fr 1fr;
+  align-items: center;
+  min-width: 920px;
+}
+
+.ContTableHeaderRow {
+  background-color: #0d0d12;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ContTableBody {
+  background-color: #16161f;
+}
+
+.ContRow + .ContRow {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ContRowFlagged {
+  background-color: rgba(147, 0, 10, 0.05);
+}
+
+.ContCell {
+  box-sizing: border-box;
+  padding: 20px 24px;
+  font-family: "Manrope", sans-serif;
+}
+
+.ContTableHeaderRow .ContCell {
+  padding: 20px 24px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #bbc9cc;
+}
+
+.ContCellCheckbox {
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+}
+
+.ContCellDetails {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.ContTrackCover {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  background-color: #201f1f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background-image: linear-gradient(135deg, rgba(114, 222, 239, 0.35), rgba(169, 143, 219, 0.35));
+}
+
+.ContTrackInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.ContTrackTitle {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #e5e2e1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ContTrackMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ContAiTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  background-color: rgba(89, 232, 255, 0.2);
+  border: 1px solid rgba(215, 248, 255, 0.2);
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #006673;
+  white-space: nowrap;
+}
+
+.ContAiTag img {
+  width: 8px;
+  height: 10px;
+}
+
+.ContTrackId {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 15px;
+  color: #bbc9cc;
+  white-space: nowrap;
+}
+
+.ContCellArtist {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #bbc9cc;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ContGenrePill {
+  display: inline-flex;
+  padding: 2.5px 12px;
+  background-color: #0d0d12;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 9999px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #e5e2e1;
+  white-space: nowrap;
+}
+
+.ContCellEngagement {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ContPlaysValue {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #e5e2e1;
+}
+
+.ContPlaysCaption {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 15px;
+  color: #bbc9cc;
+}
+
+.ContStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.ContStatusActive {
+  color: #d7f8ff;
+}
+
+.ContStatusFlagged {
+  color: #ffb4ab;
+}
+
+.ContStatusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+}
+
+.ContStatusDotActive {
+  background-color: #4ade80;
+  box-shadow: 0 0 8px #44d8ef;
+}
+
+.ContStatusDotFlagged {
+  background-color: #ffb4ab;
+}
+
+.ContCellRight {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ContRowMenuBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.ContRowMenuBtn img {
+  width: 11px;
+  height: 10px;
+}
+
+.ContModerateBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background-color: rgba(255, 180, 171, 0.2);
+  border: none;
+  border-radius: 8px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffb4ab;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ContModerateBtn img {
+  width: 11px;
+  height: 11px;
+}
+
+.ContEmptyRow {
+  padding: 32px 24px;
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  color: #bbc9cc;
+  text-align: center;
+}
+
+.ContPagination {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 32px;
+  background-color: #0d0d12;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ContPaginationLeft {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.ContPaginationSummary {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #bbc9cc;
+  white-space: nowrap;
+}
+
+.ContPerPageBox {
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
+.ContPerPageSelect {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: none;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #bbc9cc;
+  cursor: pointer;
+}
+
+.ContPaginationRight {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ContPageArrow,
+.ContPageBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #bbc9cc;
+  cursor: pointer;
+}
+
+.ContPageArrow img {
+  width: 8px;
+  height: 12px;
+}
+
+.ContPageArrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.ContPageBtnActive {
+  border: 1px solid #72deef;
+  color: #d7f8ff;
+}
+
+.ContPageEllipsis {
+  padding: 0 8px;
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  color: #bbc9cc;
+}
+
+.ContGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.ContGridCard {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background-color: #0d0d12;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+.ContGridCardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.ContTrackCoverGrid {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+}
+
+.ContGridCardBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.ContTrendCard {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 32px;
+  background: linear-gradient(180deg, rgba(114, 222, 239, 0.1) 0%, rgba(169, 143, 219, 0.1) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+}
+
+.ContTrendHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ContTrendTitle {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #e5e2e1;
+  margin: 0;
+}
+
+.ContTrendText {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #bbc9cc;
+  max-width: 763px;
+  margin: 0;
+}
+
+.ContTrendChart {
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 24px;
+  height: 192px;
+  background-color: #0d0d12;
+  border-radius: 16px;
+}
+
+.ContTrendBar {
+  flex: 1 1 0;
+  max-width: 130px;
+  border-radius: 8px 8px 0 0;
+}
+
+.ContTrendBarCyan {
+  background-color: #72deef;
+}
+
+.ContTrendBarPurple {
+  background-color: #a98fdb;
+}
+
+@media (max-width: 640px) {
+  .ContTrendCard {
+    padding: 20px;
+  }
+  .ContTrendChart {
+    padding: 16px;
+    height: 140px;
+  }
+}
+
+/* Search Bar */
+.ContSearchRow {
+  position: relative;
+  width: 100%;
+}
+
+.ContSearchInput {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 48px 12px 16px;
+  background-color: #0d0d12;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #e5e2e1;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.ContSearchInput::placeholder {
+  color: #5a5e63;
+}
+
+.ContSearchInput:focus {
+  border-color: #72deef;
+}
+
+.ContSearchSpinner {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(114, 222, 239, 0.3);
+  border-top-color: #72deef;
+  border-radius: 50%;
+  animation: ContSpin 0.8s linear infinite;
+}
+
+@keyframes ContSpin {
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* Loading state */
+.ContLoading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #bbc9cc;
+}
+
+/* Error state */
+.ContErrorRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 32px 24px;
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  color: #ffb4ab;
+  text-align: center;
+  background-color: rgba(147, 0, 10, 0.05);
+  border: 1px solid rgba(255, 180, 171, 0.2);
+  border-radius: 12px;
+}
+
+.ContRetryBtn {
+  padding: 8px 20px;
+  background: transparent;
+  border: 1px solid #ffb4ab;
+  border-radius: 8px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #ffb4ab;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+
+.ContRetryBtn:hover {
+  background: rgba(255, 180, 171, 0.1);
+}
+
+.ContErrorRow button:focus-visible {
+  outline: 2px solid #72deef;
+  outline-offset: 2px;
+}

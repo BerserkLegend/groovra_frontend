@@ -1,0 +1,266 @@
+.TwoFaOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 16px;
+  animation: twofaFadeIn 0.2s ease-out;
+}
+
+@keyframes twofaFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.TwoFaModal {
+  background: var(--bg-card, #16181d);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.12));
+  border-radius: 18px;
+  width: 100%;
+  max-width: 480px;
+  padding: 28px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  color: var(--color-text, #ffffff);
+  position: relative;
+}
+
+.TwoFaCloseBtn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary, #9ca3af);
+  font-size: 24px;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.TwoFaCloseBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.TwoFaTitle {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.TwoFaSubtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary, #9ca3af);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.TwoFaStepBadge {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-accent-blue, #3b82f6);
+  margin-bottom: 6px;
+}
+
+.TwoFaQrContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px dashed var(--border-color, rgba(255, 255, 255, 0.15));
+  margin-bottom: 20px;
+}
+
+.TwoFaQrImage {
+  width: 180px;
+  height: 180px;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 10px;
+}
+
+.TwoFaSecretBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.TwoFaCopyBtn {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.TwoFaCopyBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.TwoFaInputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.TwoFaInputLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-secondary, #9ca3af);
+}
+
+.TwoFaCodeInput {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.15));
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 4px;
+  text-align: center;
+  font-family: monospace;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.TwoFaCodeInput:focus {
+  border-color: var(--color-accent-blue, #3b82f6);
+}
+
+.TwoFaRecoveryGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.TwoFaRecoveryCodeItem {
+  font-family: monospace;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px;
+  border-radius: 6px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.TwoFaAlertError {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.TwoFaAlertWarning {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #fcd34d;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.TwoFaActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.TwoFaBtnPrimary {
+  background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(139, 92, 246, 0.45);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+}
+
+.TwoFaBtnPrimary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #9D74F8 0%, #8B5CF6 100%);
+  box-shadow: 0 6px 22px rgba(139, 92, 246, 0.6);
+  transform: translateY(-1px);
+}
+
+.TwoFaBtnPrimary:disabled,
+.TwoFaBtnDanger:disabled {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.35);
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.TwoFaBtnDanger {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  width: 100%;
+}
+
+.TwoFaBtnDanger:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+body.light-theme .TwoFaModalContainer,
+html.light-theme .TwoFaModalContainer {
+  background: var(--bg-dop, #ffffff);
+  border-color: var(--sidebar-border, rgba(0, 0, 0, 0.12));
+  color: var(--color-text-main, #0f172a);
+}
+
+body.light-theme .TwoFaBtnPrimary:disabled,
+html.light-theme .TwoFaBtnPrimary:disabled,
+body.light-theme .TwoFaBtnDanger:disabled,
+html.light-theme .TwoFaBtnDanger:disabled {
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.32);
+  box-shadow: none;
+}

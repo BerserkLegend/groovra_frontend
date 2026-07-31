@@ -1,0 +1,344 @@
+.AdminStatsOverview {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.StatsCardLarge {
+  grid-column: span 4;
+}
+
+.StatsCardWide {
+  grid-column: span 8;
+}
+
+.StatsCardItem {
+  grid-column: span 3;
+}
+
+@media (max-width: 1400px) {
+  .StatsCardLarge,
+  .StatsCardWide {
+    grid-column: span 12;
+  }
+  .StatsCardItem {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 640px) {
+  .StatsCardItem {
+    grid-column: span 12;
+  }
+}
+
+.StatsCard {
+  box-sizing: border-box;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 8px;
+  background-color: rgba(11, 14, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.StatsCard::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: linear-gradient(125deg, rgba(114, 222, 239, 0.1) 0%, rgba(169, 143, 219, 0.1) 100%);
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.StatsCard > * {
+  position: relative;
+  z-index: 1;
+}
+
+.StatsTopRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.StatsIconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  background-color: rgba(215, 248, 255, 0.1);
+  border-radius: 8px;
+}
+
+.StatsIconBox img {
+  width: 22px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.StatsChange {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #4ade80;
+}
+
+.StatsChange img {
+  width: 10px;
+  height: 10px;
+}
+
+.StatsLabel {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #72deef;
+  margin-top: 8px;
+}
+
+.StatsValue {
+  font-family: "Manrope", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 1;
+  color: #f5f5f5;
+  margin: 4px 0 12px;
+}
+
+.StatsProgressBg {
+  width: 100%;
+  height: 4px;
+  background-color: #353534;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.StatsProgressFill {
+  height: 100%;
+  background-color: #d7f8ff;
+  box-shadow: 0 0 8px rgba(68, 216, 239, 0.8);
+  border-radius: 9999px;
+}
+
+.StatsCaption {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #bbc9cc;
+  margin-top: 12px;
+}
+
+.StatsRevenueTop {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.StatsRevenueLabel {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #72deef;
+}
+
+.StatsRevenueValue {
+  font-family: "Manrope", sans-serif;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #f5f5f5;
+  margin-top: 4px;
+}
+
+.StatsRevenueBadge {
+  padding: 4px 12px;
+  background-color: #a98fdb;
+  border-radius: 4px;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #0d0d12;
+  white-space: nowrap;
+}
+
+.StatsBarChart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  height: 176px;
+  padding: 24px 8px 8px;
+}
+
+.StatsBarCol {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.StatsBar {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  background-color: rgba(114, 222, 239, 0.5);
+  transition: transform 0.15s ease;
+}
+
+.StatsBar:hover {
+  transform: scaleY(1.03);
+  transform-origin: bottom;
+}
+
+.StatsBarActive {
+  background-color: #72deef;
+  box-shadow: 0 0 15px #72deef;
+}
+
+.StatsBarLabels {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+}
+
+.StatsBarLabel {
+  flex: 1 1 0;
+  text-align: center;
+  font-family: "Manrope", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #bbc9cc;
+}
+
+.StatsBarLabelActive {
+  color: #d0bcff;
+}
+
+.StatsMidRow {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.StatsMidValue {
+  font-family: "Manrope", sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: #f5f5f5;
+}
+
+.StatsMidSub {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #d7f8ff;
+}
+
+.StatsMidCaption {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #bbc9cc;
+  margin-top: 8px;
+}
+
+.StatsLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #72deef;
+  cursor: pointer;
+}
+
+.StatsLink img {
+  width: 12px;
+  height: 12px;
+}
+
+.StatsLink:hover {
+  color: #d7f8ff;
+}
+
+.StatsWatermark {
+  position: absolute;
+  right: -14px;
+  bottom: -14px;
+  opacity: 0.05;
+  z-index: 0;
+  width: 112px;
+  height: 112px;
+}
+
+.StatsWatermark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.StatsGrowthChart {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  min-height: 128px;
+}
+
+.StatsGSrowthStatsRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.StatsGrowthStatCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.StatsGrowthStatLabel {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  color: #bbc9cc;
+  text-align: center;
+}
+
+.StatsGrowthStatValue {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #e5e2e1;
+}
