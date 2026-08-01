@@ -92,6 +92,11 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const isLiked = currentTrack ? likedTrackIds.includes(currentTrack.trackId) : false
 
+  const currentTrackRef = useRef<Track | null>(currentTrack)
+  useEffect(() => {
+    currentTrackRef.current = currentTrack
+  }, [currentTrack])
+
   const [currentPage, setCurrentPage] = useState(1)
   const [hasMoreTracks, setHasMoreTracks] = useState(true)
   const [totalTracksCount, setTotalTracksCount] = useState(0)
@@ -243,60 +248,78 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   }, [currentTrack, likedTrackIds, isGuest, openAuthModal])
 
-  const fetchTracks = useCallback(async (search = '', page = 1, append = false, genre = '') => {
+  // retryOnEmpty дзеркалить fetchPopularTracks: холодний кеш бекенда може віддати 200 з
+  // порожнім списком на перший запит. Вмикати лише для початкового "переглянути все"
+  // завантаження (page 1, без search) — інакше легітимний порожній результат пошуку
+  // користувача змушував би чекати кілька секунд перед "нічого не знайдено".
+  const fetchTracks = useCallback(async (search = '', page = 1, append = false, genre = '', retryOnEmpty = false) => {
     setIsLoadingTracks(true)
+    const retryDelaysMs = retryOnEmpty ? [2000, 3000] : []
     try {
-      const params = new URLSearchParams({ pageNumber: String(page), pageSize: '10' })
-      if (search) params.set('search', search)
-      if (genre) params.set('genre', genre)
-      const response = await apiFetch(`${GATEWAY_URL}/music/tracks?${params}`)
+      for (let attempt = 0; ; attempt++) {
+        const params = new URLSearchParams({ pageNumber: String(page), pageSize: '10' })
+        if (search) params.set('search', search)
+        if (genre) params.set('genre', genre)
+        const response = await apiFetch(`${GATEWAY_URL}/music/tracks?${params}`)
 
-      if (response.ok) {
-        const result = await response.json()
-        const fetched: Track[] =
-          result.items ?? result.data ?? result.Items ?? result.Tracks ??
-          (Array.isArray(result) ? result : [])
+        if (response.ok) {
+          const result = await response.json()
+          const fetched: Track[] =
+            result.items ?? result.data ?? result.Items ?? result.Tracks ??
+            (Array.isArray(result) ? result : [])
 
-        const normalized = fetched.map(track => ({
-          ...track,
-          coverImageUrl: normalizeUrl(track.coverImageUrl),
-          audioUrl: `${GATEWAY_URL}/music/tracks/${track.trackId}/stream`,
-        }))
-
-        const incomingLikedIds = normalized.filter(t => t.isLiked).map(t => t.trackId)
-        if (incomingLikedIds.length > 0) {
-          setLikedTrackIds(prev => Array.from(new Set([...prev, ...incomingLikedIds])))
-        }
-
-        if (append) {
-          setTracks(prev => [...prev, ...normalized])
-        } else {
-          setTracks(normalized)
-          if (normalized.length > 0 && !currentTrack) {
-            setCurrentTrack(normalized[0])
+          if (fetched.length === 0 && attempt < retryDelaysMs.length) {
+            await new Promise(resolve => setTimeout(resolve, retryDelaysMs[attempt]))
+            continue
           }
-        }
 
-        const rawTotal = result.totalCount ?? result.TotalCount ?? result.total
-        const totalCount = typeof rawTotal === 'number' ? rawTotal : (fetched.length === 10 ? (page + 1) * 10 : (page - 1) * 10 + fetched.length)
-        const computedPages = typeof rawTotal === 'number' ? Math.max(1, Math.ceil(rawTotal / 10)) : (fetched.length === 10 ? page + 1 : page)
-        setTotalTracksCount(totalCount)
-        setTotalTracksPages(computedPages)
-        setHasMoreTracks(fetched.length === 10)
-        setCurrentPage(page)
-      } else {
-        const body = await response.text().catch(() => '')
-        if (import.meta.env.DEV) console.error(`GET /music/tracks ${response.status}:`, body)
+          const normalized = fetched.map(track => ({
+            ...track,
+            coverImageUrl: normalizeUrl(track.coverImageUrl),
+            audioUrl: `${GATEWAY_URL}/music/tracks/${track.trackId}/stream`,
+          }))
+
+          const incomingLikedIds = normalized.filter(t => t.isLiked).map(t => t.trackId)
+          if (incomingLikedIds.length > 0) {
+            setLikedTrackIds(prev => Array.from(new Set([...prev, ...incomingLikedIds])))
+          }
+
+          if (append) {
+            setTracks(prev => [...prev, ...normalized])
+          } else {
+            setTracks(normalized)
+            if (normalized.length > 0 && !currentTrackRef.current) {
+              setCurrentTrack(normalized[0])
+            }
+          }
+
+          const rawTotal = result.totalCount ?? result.TotalCount ?? result.total
+          const totalCount = typeof rawTotal === 'number' ? rawTotal : (fetched.length === 10 ? (page + 1) * 10 : (page - 1) * 10 + fetched.length)
+          const computedPages = typeof rawTotal === 'number' ? Math.max(1, Math.ceil(rawTotal / 10)) : (fetched.length === 10 ? page + 1 : page)
+          setTotalTracksCount(totalCount)
+          setTotalTracksPages(computedPages)
+          setHasMoreTracks(fetched.length === 10)
+          setCurrentPage(page)
+          return
+        } else {
+          if (attempt < retryDelaysMs.length) {
+            await new Promise(resolve => setTimeout(resolve, retryDelaysMs[attempt]))
+            continue
+          }
+          const body = await response.text().catch(() => '')
+          if (import.meta.env.DEV) console.error(`GET /music/tracks ${response.status}:`, body)
+          return
+        }
       }
     } catch (err) {
       if (import.meta.env.DEV) console.error('Помилка завантаження треків:', err)
     } finally {
       setIsLoadingTracks(false)
     }
-  }, [currentTrack])
+  }, [])
 
   useEffect(() => {
-    fetchTracks()
+    fetchTracks('', 1, false, '', true)
     fetchPopularTracks()
   }, [])
 

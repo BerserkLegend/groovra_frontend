@@ -54,7 +54,7 @@ export interface PlayerContextType {
   formatTime: (seconds: number) => string
   setTracks: React.Dispatch<React.SetStateAction<Track[]>>
   setCurrentTrack: React.Dispatch<React.SetStateAction<Track | null>>
-  fetchTracks: (search?: string, page?: number, append?: boolean, genre?: string) => Promise<void>
+  fetchTracks: (search?: string, page?: number, append?: boolean, genre?: string, retryOnEmpty?: boolean) => Promise<void>
   popularTracks: Track[]
   isLoadingPopular: boolean
   fetchPopularTracks: () => Promise<void>

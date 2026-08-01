@@ -417,7 +417,7 @@ export const Main: React.FC = () => {
       fetchLikedTracks()
     } else if (['Home', 'Search'].includes(activeTab)) {
       if (tracks.length === 0) {
-        fetchTracks(searchQuery, 1, false)
+        fetchTracks(searchQuery, 1, false, '', !searchQuery)
       }
       if (activeTab === 'Home' && popularList.length === 0) {
         fetchPopularTracks?.()
